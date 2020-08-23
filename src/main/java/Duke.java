@@ -1,28 +1,28 @@
 import java.util.Scanner;
 
 public class Duke {
+    public static void printWithLines(String stringToPrint) {
+        String finalString = "____________________________________________________________\n"
+                + stringToPrint
+                + "\n____________________________________________________________";
+
+        System.out.println(finalString);
+    }
+
     public static void main(String[] args) {
-        String content = " Hello! I'm Duke\n"
-                + " What can I do for you?\n";
-
-        String topLine = "____________________________________________________________\n";
-        String bottomLine = "____________________________________________________________";
-
-        System.out.println(topLine + content + bottomLine);
+        printWithLines(" Hello! I'm Duke\n" + " What can I do for you?");
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
         while (!input.equals("bye")) {
             if (!input.equals("bye")) {
-                System.out.println(topLine + "You typed in \"" + input + "\"");
-                System.out.println(bottomLine);
+                printWithLines(" You typed in \"" + input + "\"");
             }
 
             input = scanner.nextLine();
         }
 
-        content = " Bye Bye! Hope to see you again soon!\n";
-        System.out.println(topLine + content + bottomLine);
+        printWithLines(" Bye Bye! Hope to see you again soon!");
     }
 }
