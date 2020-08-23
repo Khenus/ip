@@ -16,10 +16,7 @@ public class Duke {
         String input = scanner.nextLine();
 
         while (!input.equals("bye")) {
-            if (!input.equals("bye")) {
-                printWithLines(" You typed in \"" + input + "\"");
-            }
-
+            printWithLines(" You typed in \"" + input + "\"");
             input = scanner.nextLine();
         }
 
