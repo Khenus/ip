@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Duke {
     public static ArrayList<Task> allActions = new ArrayList<>();
 
+    //Printing information within bounding lines
     public static void printWithLines(String stringToPrint) {
         String finalString = "____________________________________________________________\n"
                 + stringToPrint
@@ -12,6 +13,7 @@ public class Duke {
         System.out.println(finalString);
     }
 
+    //Listing all stored actions
     public static void listAllActions() {
         String fullList = " Here are the tasks in your list:\n";
 
@@ -22,22 +24,24 @@ public class Duke {
                 fullList +=  "\n";
             }
         }
-
         printWithLines(fullList);
     }
 
+    //Storing new action into Array List
     public static void addAction(String userInput) {
         Task newTask = new Task(userInput);
         allActions.add(newTask);
         printWithLines(" added: " + userInput);
     }
 
+    //Update task if the value being entered is valid
     public static void updateIsDone(int numberToUpdate) {
-        if (numberToUpdate > allActions.size()) {
+        if (numberToUpdate > allActions.size() || numberToUpdate < 1) {
             printWithLines("Invalid task number");
         } else {
             allActions.get(numberToUpdate - 1).setIsDone(true);
-            printWithLines("Nice! I've marked this task as done:\n " + allActions.get(numberToUpdate - 1).getFullTask());
+            printWithLines("Nice! I've marked this task as done:\n "
+                    + allActions.get(numberToUpdate - 1).getFullTask());
         }
     }
 
@@ -45,7 +49,7 @@ public class Duke {
         printWithLines(" Hello! I'm Duke\n" + " What can I do for you?");
 
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().toLowerCase();
 
         while (!input.equals("bye")) {
             String[] inputs = input.split(" ");
@@ -57,7 +61,7 @@ public class Duke {
                 addAction(input);
             }
 
-            input = scanner.nextLine();
+            input = scanner.nextLine().toLowerCase();
         }
 
         printWithLines(" Bye Bye! Hope to see you again soon!");
