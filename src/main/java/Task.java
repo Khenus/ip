@@ -2,8 +2,8 @@ public class Task {
     private String taskDescription;
     private boolean isDone;
 
-    public Task(String taskInput) {
-        this.taskDescription = taskInput;
+    public Task(String taskDescription) {
+        this.taskDescription = taskDescription;
         this.isDone = false;
     }
 
