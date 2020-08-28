@@ -1,7 +1,7 @@
-public class Deadlines extends Task {
+public class Deadline extends Task {
     private String dateBy;
 
-    public Deadlines(String[] descriptionWithTime) {
+    public Deadline(String[] descriptionWithTime) {
         super(descriptionWithTime[0]);
         this.dateBy = descriptionWithTime[1];
     }

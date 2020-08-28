@@ -13,7 +13,6 @@ public class Task {
 
     public String getFullTask() {
         String isDoneSymbol = isDone ? "\u2713" : "\u2717";
-
         return String.format("[%s] %s", isDoneSymbol, taskDescription);
     }
 }

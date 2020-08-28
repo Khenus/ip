@@ -2,80 +2,94 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    public static final String FRONT_SPACING = " ";
+    public static final String NEW_LINE = "\n";
+    public static final String TOP_LINE = "____________________________________________________________\n";
+    public static final String BOTTOM_LINE = "\n____________________________________________________________";
+    public static final String LIST_HEADER = FRONT_SPACING + "Here are the tasks in your list:\n";
+    public static final String INVALID_TASK = FRONT_SPACING + "Invalid task to insert";
+    public static final String TASK_HEADER = FRONT_SPACING + "Got it. I've added this task: \n";
+    public static final String TASK_FOOTER_FIRST_PART = FRONT_SPACING + "Now you have ";
+    public static final String TASK_FOOTER_SECOND_PART = " tasks in the list.";
+    public static final String INVALID_TASK_NUMBER = "Invalid task number";
+    public static final String MARKED_DONE_HEADER = "Nice! I've marked this task as done:\n";
+    public static final String GREETING_HEADER_TOP = FRONT_SPACING + "Hello! I'm Duke\n";
+    public static final String GREETING_HEADER_BOTTOM = FRONT_SPACING + "What can I do for you?";
+    public static final String BYE_HEADER = FRONT_SPACING + "Bye Bye! Hope to see you again soon!";
+
+
     public static ArrayList<Task> allActions = new ArrayList<>();
 
-    //Printing information within bounding lines
+    /**
+     * Printing information within bounding lines
+     */
     public static void printWithLines(String stringToPrint) {
-        String finalString = "____________________________________________________________\n"
-                + stringToPrint
-                + "\n____________________________________________________________";
-
+        String finalString = TOP_LINE + stringToPrint + BOTTOM_LINE;
         System.out.println(finalString);
     }
 
-    //Listing all stored actions
+    /**
+     * Listing all stored actions
+     */
     public static void listAllActions() {
-        String fullList = "\tHere are the tasks in your list:\n";
+        String fullList = LIST_HEADER;
 
         for (int i = 0; i < allActions.size(); i++) {
-            fullList += "\t" + (i + 1) + "." + allActions.get(i).getFullTask();
+            fullList += String.format("%s%s.%s", FRONT_SPACING, (i + 1), allActions.get(i).getFullTask());
 
             if (i != allActions.size() - 1) {
-                fullList +=  "\n";
+                fullList += NEW_LINE;
             }
         }
         printWithLines(fullList);
     }
 
-    //Storing new action into Array List
+    /**
+     * Storing new action into Array List
+     */
     public static void addAction(String command, String userInput) {
-        int firstSpacebarAt = userInput.indexOf(" ");
-        String description = userInput.substring(firstSpacebarAt + 1);
+        int firstSpaceIndex = userInput.indexOf(" ");
+        String description = userInput.substring(firstSpaceIndex + 1);
 
-        String taskConfirmation = "";
+        Task newTask = new Task(userInput);
 
         if (command.equals("todo")) {
-            Todo newTodo = new Todo(description);
-            allActions.add(newTodo);
-            taskConfirmation = newTodo.getFullTask();
-
+            newTask = new Todo(description);
         } else if (command.equals("deadline")) {
             String[] details = description.split(" /by ");
-
-            Deadlines newDeadline = new Deadlines(details);
-            allActions.add(newDeadline);
-            taskConfirmation = newDeadline.getFullTask();
-
+            newTask = new Deadline(details);
         } else if (command.equals("event")) {
             String[] details = description.split(" /at ");
-
-            Event newEvent = new Event(details);
-            allActions.add(newEvent);
-            taskConfirmation = newEvent.getFullTask();
+            newTask = new Event(details);
         }
 
+        allActions.add(newTask);
+        String taskConfirmation = newTask.getFullTask();
+
         if (taskConfirmation.equals("")) {
-            printWithLines("Invalid task to insert");
+            printWithLines(INVALID_TASK);
         } else {
-            printWithLines("\tGot it. I've added this task: \n\t\t"
-                    + taskConfirmation
-                    + "\n\tNow you have " + allActions.size() + " tasks in the list.");
+            printWithLines(TASK_HEADER
+                    + FRONT_SPACING + FRONT_SPACING + taskConfirmation + NEW_LINE
+                    + TASK_FOOTER_FIRST_PART + allActions.size() + TASK_FOOTER_SECOND_PART);
         }
     }
 
-    //Update task if the value being entered is valid
+    /**
+     * Update task if the value being entered is valid
+     */
     public static void updateIsDone(int numberToUpdate) {
         if (numberToUpdate > allActions.size() || numberToUpdate < 1) {
-            printWithLines("Invalid task number");
+            printWithLines(INVALID_TASK_NUMBER);
         } else {
             allActions.get(numberToUpdate - 1).setIsDone(true);
-            printWithLines("Nice! I've marked this task as done:\n "
-                    + allActions.get(numberToUpdate - 1).getFullTask());
+            printWithLines(MARKED_DONE_HEADER
+                    + FRONT_SPACING + allActions.get(numberToUpdate - 1).getFullTask());
         }
     }
 
     public static void main(String[] args) {
-        printWithLines(" Hello! I'm Duke\n" + " What can I do for you?");
+        printWithLines(GREETING_HEADER_TOP + GREETING_HEADER_BOTTOM);
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -83,6 +97,7 @@ public class Duke {
 
         while (!inputInLowerCase.equals("bye")) {
             String[] inputs = inputInLowerCase.split(" ");
+
             if (inputs[0].equals("list")) {
                 listAllActions();
             } else if (inputs[0].equals("done")) {
@@ -95,6 +110,6 @@ public class Duke {
             inputInLowerCase = input.toLowerCase();
         }
 
-        printWithLines(" Bye Bye! Hope to see you again soon!");
+        printWithLines(BYE_HEADER);
     }
 }
