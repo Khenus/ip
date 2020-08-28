@@ -12,7 +12,14 @@ public class Task {
     }
 
     public String getFullTask() {
-        String isDoneSymbol = isDone ? "\u2713" : "\u2717";
+        /** For automated testing, replace isDoneSymbol with the following line,
+         * String isDoneSymbol = isDone ? "✓" : "✗";
+         *
+         * For production, replace isDoneSymbol with the following line,
+         * String isDoneSymbol = isDone ? "\u2713" : "\u2717";
+         */
+
+        String isDoneSymbol = isDone ? "✓" : "✗";
         return String.format("[%s] %s", isDoneSymbol, taskDescription);
     }
 }
