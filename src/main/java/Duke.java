@@ -45,24 +45,9 @@ public class Duke {
     }
 
     /**
-     * Storing new action into Array List
-     */
-    public static void addAction(String command, String userInput) {
-        int firstSpaceIndex = userInput.indexOf(" ");
-        String description = userInput.substring(firstSpaceIndex + 1);
-
-        Task newTask = new Task(userInput);
-
-        if (command.equals("todo")) {
-            newTask = new Todo(description);
-        } else if (command.equals("deadline")) {
-            String[] details = description.split(" /by ");
-            newTask = new Deadline(details);
-        } else if (command.equals("event")) {
-            String[] details = description.split(" /at ");
-            newTask = new Event(details);
-        }
-
+     * Getting confirmation for task creation
+     * */
+    public static void deadlineCreator(Task newTask) {
         allActions.add(newTask);
         String taskConfirmation = newTask.getFullTask();
 
@@ -72,6 +57,34 @@ public class Duke {
             printWithLines(TASK_HEADER
                     + FRONT_SPACING + FRONT_SPACING + taskConfirmation + NEW_LINE
                     + TASK_FOOTER_FIRST_PART + allActions.size() + TASK_FOOTER_SECOND_PART);
+        }
+    }
+
+    /**
+     * Storing new action into Array List
+     */
+    public static void addAction(String command, String userInput) {
+        try {
+            int firstSpaceIndex = userInput.indexOf(" ");
+            String description = userInput.substring(firstSpaceIndex + 1);
+
+            if (command.equals("todo")) {
+                String[] details = userInput.split(" ");
+                Task newTask = new Todo(details);
+                deadlineCreator(newTask);
+            } else if (command.equals("deadline")) {
+                String[] details = description.split(" /by ");
+                Task newTask = new Deadline(details);
+                deadlineCreator(newTask);
+            } else if (command.equals("event")) {
+                String[] details = description.split(" /at ");
+                Task newTask = new Event(details);
+                deadlineCreator(newTask);
+            } else {
+                printWithLines("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            }
+        } catch (IndexOutOfBoundsException indexError){
+            printWithLines("☹ OOPS!!! The description of a " + command + " cannot be empty.");
         }
     }
 
