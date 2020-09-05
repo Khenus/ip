@@ -9,10 +9,10 @@ import static duke.Constants.BYE_HEADER;
 import static duke.Constants.GREETING_HEADER_TOP;
 import static duke.Constants.GREETING_HEADER_BOTTOM;
 
-import static duke.command.Done.updateIsDone;
-import static duke.command.AddTask.addAction;
+import static duke.commands.Done.updateIsDone;
+import static duke.commands.AddTask.addAction;
 import static duke.helper.SpecialPrint.printWithLines;
-import static duke.command.List.listAllActions;
+import static duke.commands.List.listAllActions;
 
 public class Duke {
     public static ArrayList<Task> allActions = new ArrayList<>();

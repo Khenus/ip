@@ -1,8 +1,8 @@
 package duke.task;
 
 public class Todo extends Task {
-    public Todo(String[] taskDescription) {
-        super(taskDescription[1]);
+    public Todo(String taskDescription) {
+        super(taskDescription);
     }
 
     @Override
