@@ -11,8 +11,9 @@ import static duke.Constants.GREETING_HEADER_BOTTOM;
 
 import static duke.commands.Done.updateIsDone;
 import static duke.commands.AddTask.addAction;
-import static duke.helper.SpecialPrint.printWithLines;
 import static duke.commands.List.listAllActions;
+import static duke.commands.Delete.deleteTask;
+import static duke.helper.SpecialPrint.printWithLines;
 
 public class Duke {
     public static ArrayList<Task> allActions = new ArrayList<>();
@@ -31,6 +32,8 @@ public class Duke {
                 listAllActions(allActions);
             } else if (inputs[0].equals("done")) {
                 updateIsDone(Integer.parseInt(inputs[1]), allActions);
+            } else if (inputs[0].equals("delete")) {
+                deleteTask(input, allActions);
             } else {
                 addAction(inputs[0], input, allActions);
             }

@@ -15,8 +15,8 @@ import static duke.Constants.INVALID_TASK;
 import static duke.Constants.TASK_HEADER;
 import static duke.Constants.FRONT_SPACING;
 import static duke.Constants.NEW_LINE;
-import static duke.Constants.TASK_FOOTER_FIRST_PART;
-import static duke.Constants.TASK_FOOTER_SECOND_PART;
+import static duke.Constants.CONFIRMATION_FOOTER_FIRST_PART;
+import static duke.Constants.CONFIRMATION_FOOTER_SECOND_PART;
 
 import static duke.helper.SpecialPrint.printWithLines;
 
@@ -105,7 +105,7 @@ public class AddTask {
         } else {
             printWithLines(TASK_HEADER
                     + FRONT_SPACING + FRONT_SPACING + taskConfirmation + NEW_LINE
-                    + TASK_FOOTER_FIRST_PART + allActions.size() + TASK_FOOTER_SECOND_PART);
+                    + CONFIRMATION_FOOTER_FIRST_PART + allActions.size() + CONFIRMATION_FOOTER_SECOND_PART);
         }
     }
 }
