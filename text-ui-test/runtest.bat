@@ -7,11 +7,11 @@ REM delete output from previous run
 del ACTUAL.TXT
 
 REM compile the code into the bin folder
-javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\Task.java
-javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\Deadline.java
-javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\Event.java
-javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\Todo.java
-javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\Duke.java
+javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\duke.task.Task.java
+javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\duke.task.Deadline.java
+javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\duke.task.Event.java
+javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\duke.task.Todo.java
+javac  -cp ..\bin -Xlint:none -d ..\bin ..\src\main\java\duke.Duke.java
 
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
@@ -20,7 +20,7 @@ IF ERRORLEVEL 1 (
 REM no error here, errorlevel == 0
 
 REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ..\bin Duke < input.txt > ACTUAL.TXT
+java -classpath ..\bin duke.Duke < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
 FC ACTUAL.TXT EXPECTED.TXT
