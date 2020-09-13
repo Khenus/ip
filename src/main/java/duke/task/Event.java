@@ -8,9 +8,19 @@ public class Event extends Task {
         this.dateAt = descriptionWithTime[1];
     }
 
+    public Event(String isDone, String description, String dateAt) {
+        super(description, isDone);
+        this.dateAt = dateAt;
+    }
+
     @Override
     public String getFullTask() {
         String eventDate = " (at: " + dateAt + ")";
         return String.format("[E]%s%s", super.getFullTask(), eventDate);
+    }
+
+    @Override
+    public String getTaskToSave() {
+        return String.format("E | %s | %s", super.getTaskToSave(), dateAt);
     }
 }

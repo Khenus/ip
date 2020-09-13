@@ -1,5 +1,8 @@
 package duke.task;
 
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.Boolean.valueOf;
+
 public class Task {
     private String taskDescription;
     private boolean isDone;
@@ -7,6 +10,11 @@ public class Task {
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
         this.isDone = false;
+    }
+
+    public Task(String taskDescription, String isDone) {
+        this.taskDescription = taskDescription;
+        this.isDone = parseBoolean(isDone);
     }
 
     public void setIsDone(boolean newIsDone) {
@@ -23,5 +31,9 @@ public class Task {
 
         String isDoneSymbol = isDone ? "✓" : "✗";
         return String.format("[%s] %s", isDoneSymbol, taskDescription);
+    }
+
+    public String getTaskToSave() {
+        return String.format("%s | %s", valueOf(isDone), taskDescription);
     }
 }
