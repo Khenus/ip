@@ -14,11 +14,14 @@ import static duke.commands.AddTask.addAction;
 import static duke.commands.List.listAllActions;
 import static duke.commands.Delete.deleteTask;
 import static duke.helper.SpecialPrint.printWithLines;
+import static duke.helper.FileHandler.dataInitializer;
 
 public class Duke {
     public static ArrayList<Task> allActions = new ArrayList<>();
 
     public static void main(String[] args) {
+        dataInitializer(allActions);
+
         printWithLines(GREETING_HEADER_TOP + GREETING_HEADER_BOTTOM);
 
         Scanner scanner = new Scanner(System.in);
