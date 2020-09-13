@@ -8,7 +8,7 @@ public class Event extends Task {
         this.dateAt = descriptionWithTime[1];
     }
 
-    public Event(String description, String dateAt, String isDone) {
+    public Event(String isDone, String description, String dateAt) {
         super(description, isDone);
         this.dateAt = dateAt;
     }
