@@ -78,6 +78,7 @@ public class AddTask {
 
             Task newTask = new Deadline(details);
             allActions.add(newTask);
+            taskAddedVerification(newTask, allActions);
         } else if (command.equals("event")) {
             String[] details = description.split(" /at ");
             if (details.length < 2) {
@@ -91,6 +92,7 @@ public class AddTask {
 
             Task newTask = new Event(details);
             allActions.add(newTask);
+            taskAddedVerification(newTask, allActions);
         }
     }
 
