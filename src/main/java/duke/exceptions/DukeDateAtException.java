@@ -1,4 +1,4 @@
 package duke.exceptions;
 
-public class DukeDateAtException extends Exception{
+public class DukeDateAtException extends DukeException {
 }

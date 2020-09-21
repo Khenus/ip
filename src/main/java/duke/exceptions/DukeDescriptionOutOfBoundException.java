@@ -1,4 +1,4 @@
 package duke.exceptions;
 
-public class DukeDescriptionOutOfBoundException extends Exception {
+public class DukeDescriptionOutOfBoundException extends DukeException {
 }

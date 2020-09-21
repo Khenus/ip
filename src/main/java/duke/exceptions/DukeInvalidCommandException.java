@@ -1,4 +1,4 @@
 package duke.exceptions;
 
-public class DukeInvalidCommandException extends Exception{
+public class DukeInvalidCommandException extends DukeException {
 }

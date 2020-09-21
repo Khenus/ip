@@ -3,6 +3,7 @@ package duke;
 public class Constants {
     public static final String FRONT_SPACING = " ";
     public static final String NEW_LINE = "\n";
+    public static final String LINE = "____________________________________________________________";
     public static final String TOP_LINE = "____________________________________________________________\n";
     public static final String BOTTOM_LINE = "\n____________________________________________________________";
     public static final String LIST_HEADER = FRONT_SPACING + "Here are the tasks in your list:\n";
@@ -22,7 +23,7 @@ public class Constants {
     //For File Handler
     public static final String INITIALIZER = FRONT_SPACING + "Initializing...\n";
     public static final String SAVING_INFO = FRONT_SPACING + "(All Changes will be automatically saved)";
-    public static final String FILE_NOT_FOUND = FRONT_SPACING + "Save file not found.\n";
+    public static final String FILE_NOT_FOUND = FRONT_SPACING + "Save file not found.";
     public static final String FILE_SUCCESSFULLY_READ = FRONT_SPACING + "File successfully read!\n";
     public static final String SAVE_FILE_ACCESS_FAILURE = FRONT_SPACING + "Error accessing save file\n";
 }

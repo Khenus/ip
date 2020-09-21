@@ -1,9 +1,11 @@
 package duke.helper;
 
+import duke.exceptions.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
-import duke.task.Task;
 import duke.task.Todo;
+import duke.task.Task;
+import duke.task.TaskList;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,14 +17,22 @@ import java.util.Scanner;
 import static duke.Constants.FILE_NOT_FOUND;
 import static duke.Constants.FILE_SUCCESSFULLY_READ;
 import static duke.Constants.SAVE_FILE_ACCESS_FAILURE;
+import static duke.helper.Ui.printInitializer;
 
-import static duke.helper.SpecialPrint.printInitializer;
+public class Storage {
+    String filePath;
+    ArrayList<Task> allActions;
 
-public class FileHandler {
-    public static void dataInitializer(ArrayList<Task> allActions) {
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public ArrayList<Task> load() throws DukeException {
         Scanner fileReader = null;
+        allActions = new ArrayList<>();
+
         try {
-            File saveFile = new File("tasklist.txt");
+            File saveFile = new File(filePath);
             fileReader = new Scanner(saveFile);
 
             while (fileReader.hasNextLine()) {
@@ -43,19 +53,22 @@ public class FileHandler {
             fileReader.close();
             printInitializer(FILE_SUCCESSFULLY_READ);
         } catch (FileNotFoundException fileReadingError) {
-            printInitializer(FILE_NOT_FOUND);
+            throw new DukeException(FILE_NOT_FOUND);
         } finally {
             if (fileReader != null) {
                 fileReader.close();
             }
         }
+
+        return allActions;
     }
 
-    public static void dataWriter(ArrayList<Task> allActions) {
+    public void write(TaskList dataList) {
+        allActions = dataList.getFullArray();
         FileWriter fileWriter = null;
 
         try {
-            fileWriter = new FileWriter("tasklist.txt");
+            fileWriter = new FileWriter(filePath);
             String toWrite = "";
 
             for (Task currentTask : allActions) {

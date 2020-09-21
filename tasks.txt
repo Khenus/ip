@@ -1,0 +1,2 @@
+T | false | newtodo
+E | true | newevent | newdate

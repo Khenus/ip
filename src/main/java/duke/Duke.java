@@ -1,55 +1,47 @@
 package duke;
 
-import duke.task.Task;
-
-import java.util.Scanner;
-import java.util.ArrayList;
-
-import static duke.Constants.BYE_HEADER;
-import static duke.Constants.GREETING_HEADER_TOP;
-import static duke.Constants.GREETING_HEADER_BOTTOM;
-
-import static duke.commands.Done.updateIsDone;
-import static duke.commands.AddTask.addAction;
-import static duke.commands.List.listAllActions;
-import static duke.commands.Delete.deleteTask;
-import static duke.helper.SpecialPrint.printWithLines;
-import static duke.helper.FileHandler.dataInitializer;
-import static duke.helper.FileHandler.dataWriter;
+import duke.exceptions.DukeException;
+import duke.helper.Command;
+import duke.helper.Parser;
+import duke.helper.Storage;
+import duke.helper.Ui;
+import duke.task.TaskList;
 
 public class Duke {
-    public static ArrayList<Task> allActions = new ArrayList<>();
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showError(e.getErrorMessage());
+            tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+                storage.write(tasks);
+            } catch (DukeException e) {
+                ui.showError(e.getErrorMessage());
+            } finally {
+            }
+        }
+        ui.showGoodbye();
+    }
 
     public static void main(String[] args) {
-        dataInitializer(allActions);
-//        dataWriter(allActions);
-
-        printWithLines(GREETING_HEADER_TOP + GREETING_HEADER_BOTTOM);
-
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        String inputInLowerCase = input.toLowerCase();
-
-        while (!inputInLowerCase.equals("bye")) {
-            String[] inputs = inputInLowerCase.split(" ");
-
-            if (inputs[0].equals("list")) {
-                listAllActions(allActions);
-            } else if (inputs[0].equals("done")) {
-                updateIsDone(Integer.parseInt(inputs[1]), allActions);
-                dataWriter(allActions);
-            } else if (inputs[0].equals("delete")) {
-                deleteTask(input, allActions);
-                dataWriter(allActions);
-            } else {
-                addAction(inputs[0], input, allActions);
-                dataWriter(allActions);
-            }
-
-            input = scanner.nextLine();
-            inputInLowerCase = input.toLowerCase();
-        }
-
-        printWithLines(BYE_HEADER);
+        new Duke("tasks.txt").run();
     }
 }

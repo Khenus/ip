@@ -1,14 +1,15 @@
 package duke.commands;
 
-import duke.task.Task;
+import duke.helper.Command;
+import duke.task.TaskList;
+import duke.helper.Ui;
+import duke.helper.Storage;
 import duke.exceptions.DukeItemNumberException;
 import duke.exceptions.DukeDescriptionNumberException;
 import duke.exceptions.DukeDescriptionOutOfBoundException;
 
 import static duke.helper.CheckNumeric.isNumeric;
-import static duke.helper.SpecialPrint.printWithLines;
 
-import java.util.ArrayList;
 import static java.lang.Integer.parseInt;
 
 import static duke.Constants.NEW_LINE;
@@ -20,20 +21,26 @@ import static duke.Constants.OUT_OF_BOUND_DELETION;
 import static duke.Constants.CONFIRMATION_FOOTER_FIRST_PART;
 import static duke.Constants.CONFIRMATION_FOOTER_SECOND_PART;
 
-public class Delete{
-    public static void deleteTask(String userInput, ArrayList<Task> allActions) {
+public class DeleteCommand extends Command {
+    String userInput;
+
+    public DeleteCommand(String userInput) {
+        this.userInput = userInput;
+    }
+
+    public void execute(TaskList task, Ui ui, Storage storage) {
         try {
-            deletionHandler(userInput, allActions);
+            deletionHandler(userInput, task, ui);
         } catch (DukeItemNumberException itemNumberError) {
-            printWithLines(INVALID_TASK_NUMBER);
+            ui.printWithLines(INVALID_TASK_NUMBER);
         } catch (DukeDescriptionNumberException notANumberError) {
-            printWithLines(NOT_NUMBER_DELETION);
+            ui.printWithLines(NOT_NUMBER_DELETION);
         } catch (DukeDescriptionOutOfBoundException numberExceededError) {
-            printWithLines(OUT_OF_BOUND_DELETION);
+            ui.printWithLines(OUT_OF_BOUND_DELETION);
         }
     }
 
-    public static void deletionHandler(String userInput, ArrayList<Task> allActions)
+    public static void deletionHandler(String userInput, TaskList allActions, Ui ui)
             throws DukeItemNumberException, DukeDescriptionNumberException, DukeDescriptionOutOfBoundException {
         String[] userInputs= userInput.split(" ");
 
@@ -49,7 +56,7 @@ public class Delete{
 
             allActions.remove(indexToRemove);
 
-            printWithLines(DELETION_HEADER
+            ui.printWithLines(DELETION_HEADER
                     + FRONT_SPACING + FRONT_SPACING + deletionConfirmation + NEW_LINE
                     + CONFIRMATION_FOOTER_FIRST_PART + allActions.size() + CONFIRMATION_FOOTER_SECOND_PART);
         }
