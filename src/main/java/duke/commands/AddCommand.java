@@ -1,12 +1,9 @@
 package duke.commands;
 
+import duke.exceptions.*;
 import duke.helper.Command;
 import duke.task.TaskList;
 import duke.helper.Ui;
-import duke.exceptions.DukeDateAtException;
-import duke.exceptions.DukeDateByException;
-import duke.exceptions.DukeDescriptionException;
-import duke.exceptions.DukeInvalidCommandException;
 import duke.helper.Storage;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -84,9 +81,13 @@ public class AddCommand extends Command {
                 throw new DukeDateAtException();
             }
 
-            Task newTask = new Deadline(details);
-            allActions.add(newTask);
-            taskAddedVerification(ui, newTask, allActions);
+            try {
+                Task newTask = new Deadline(details);
+                allActions.add(newTask);
+                taskAddedVerification(ui, newTask, allActions);
+            } catch (DukeTimeFormatException timeFormatError) {
+                ui.printWithLines("☹ OOPS!!! The format of the date must be yyyy-mm-dd!");
+            }
         } else if (command.equals("event")) {
             String[] details = description.split(" /at ");
             if (details.length < 2) {
@@ -98,9 +99,13 @@ public class AddCommand extends Command {
                 throw new DukeDateAtException();
             }
 
-            Task newTask = new Event(details);
-            allActions.add(newTask);
-            taskAddedVerification(ui, newTask, allActions);
+            try {
+                Task newTask = new Event(details);
+                allActions.add(newTask);
+                taskAddedVerification(ui, newTask, allActions);
+            } catch (DukeTimeFormatException timeFormatError) {
+                ui.printWithLines("☹ OOPS!!! The format of the date must be yyyy-mm-dd!");
+            }
         }
     }
 

@@ -1,2 +1,5 @@
-T | false | newtodo
-E | true | newevent | newdate
+E | false | newevent | 2020-12-30 | 1800
+E | true | newevent | 2020-12-30
+D | false | deadline1 | 2020-10-23 | 2350
+D | false | deadline 2 | 2020-01-26 | 1010
+D | true | deadline 2 | 2020-02-20
