@@ -1,12 +1,8 @@
 package duke.commands;
 
-import duke.helper.Command;
+import duke.exceptions.*;
 import duke.task.TaskList;
 import duke.helper.Ui;
-import duke.exceptions.DukeDateAtException;
-import duke.exceptions.DukeDateByException;
-import duke.exceptions.DukeDescriptionException;
-import duke.exceptions.DukeInvalidCommandException;
 import duke.helper.Storage;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -17,6 +13,7 @@ import static duke.Constants.INVALID_TASK;
 import static duke.Constants.TASK_HEADER;
 import static duke.Constants.FRONT_SPACING;
 import static duke.Constants.NEW_LINE;
+import static duke.Constants.DATE_FORMAT_ERROR;
 import static duke.Constants.CONFIRMATION_FOOTER_FIRST_PART;
 import static duke.Constants.CONFIRMATION_FOOTER_SECOND_PART;
 
@@ -84,9 +81,13 @@ public class AddCommand extends Command {
                 throw new DukeDateAtException();
             }
 
-            Task newTask = new Deadline(details);
-            allActions.add(newTask);
-            taskAddedVerification(ui, newTask, allActions);
+            try {
+                Task newTask = new Deadline(details);
+                allActions.add(newTask);
+                taskAddedVerification(ui, newTask, allActions);
+            } catch (DukeTimeFormatException timeFormatError) {
+                ui.printWithLines(DATE_FORMAT_ERROR);
+            }
         } else if (command.equals("event")) {
             String[] details = description.split(" /at ");
             if (details.length < 2) {
@@ -98,9 +99,13 @@ public class AddCommand extends Command {
                 throw new DukeDateAtException();
             }
 
-            Task newTask = new Event(details);
-            allActions.add(newTask);
-            taskAddedVerification(ui, newTask, allActions);
+            try {
+                Task newTask = new Event(details);
+                allActions.add(newTask);
+                taskAddedVerification(ui, newTask, allActions);
+            } catch (DukeTimeFormatException timeFormatError) {
+                ui.printWithLines(DATE_FORMAT_ERROR);
+            }
         }
     }
 

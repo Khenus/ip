@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -42,10 +43,20 @@ public class Storage {
                     Todo newTask = new Todo(fileInputs[1], fileInputs[2]);
                     allActions.add(newTask);
                 } else if (fileInputs[0].equals("D")) {
-                    Deadline newTask = new Deadline(fileInputs[1], fileInputs[2], fileInputs[3]);
+                    String timeBy = null;
+                    if (fileInputs.length > 4) {
+                        timeBy = fileInputs[4];
+                    }
+
+                    Deadline newTask = new Deadline(fileInputs[1], fileInputs[2], fileInputs[3], timeBy);
                     allActions.add(newTask);
                 } else if (fileInputs[0].equals("E")) {
-                    Event newTask = new Event(fileInputs[1], fileInputs[2], fileInputs[3]);
+                    String timeAt = null;
+                    if (fileInputs.length > 4) {
+                        timeAt = fileInputs[4];
+                    }
+
+                    Event newTask = new Event(fileInputs[1], fileInputs[2], fileInputs[3], timeAt);
                     allActions.add(newTask);
                 }
             }
