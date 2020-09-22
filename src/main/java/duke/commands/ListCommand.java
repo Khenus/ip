@@ -8,9 +8,18 @@ import static duke.Constants.FRONT_SPACING;
 import static duke.Constants.LIST_HEADER;
 import static duke.Constants.NEW_LINE;
 
+/**
+ * A class to handle List command
+ *
+ * @author Khenus Tan
+ */
 public class ListCommand extends Command {
     /**
-     * Listing all stored actions
+     * Execute command for listing all task inside a TaskList.
+     *
+     * @param allActions The TaskList containing all added tasks
+     * @param ui The Ui for interfacing with the user
+     * @param storage The Storage for file IO
      */
     public void execute(TaskList allActions, Ui ui, Storage storage) {
         String fullList = LIST_HEADER;

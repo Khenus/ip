@@ -19,14 +19,30 @@ import static duke.Constants.FILE_SUCCESSFULLY_READ;
 import static duke.Constants.SAVE_FILE_ACCESS_FAILURE;
 import static duke.helper.Ui.printInitializer;
 
+/**
+ * A class to handle file IO
+ *
+ * @author Khenus Tan
+ */
 public class Storage {
-    String filePath;
-    ArrayList<Task> allActions;
+    private String filePath;
+    private ArrayList<Task> allActions;
 
+    /**
+     * Constructor for Storage class
+     *
+     * @param filePath The String containing the file path of the save file
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * A function to load data from a save file into a ArrayList of Tasks
+     *
+     * @return ArrayList
+     * @throws DukeException If file is corrupted or not found
+     */
     public ArrayList<Task> load() throws DukeException {
         Scanner fileReader = null;
         allActions = new ArrayList<>();
@@ -73,6 +89,11 @@ public class Storage {
         return allActions;
     }
 
+    /**
+     * A funtion to write data into a save file from a Task List
+     *
+     * @param dataList The TaskList containing all added tasks
+     */
     public void write(TaskList dataList) {
         allActions = dataList.getFullArray();
         FileWriter fileWriter = null;

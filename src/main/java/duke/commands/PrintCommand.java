@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
+import duke.exceptions.*;
 import duke.helper.Storage;
 import duke.helper.Ui;
 import duke.task.Task;
@@ -18,10 +18,22 @@ import static duke.Constants.DATE_FORMAT_ERROR;
 import static duke.Constants.FRONT_SPACING;
 import static duke.Constants.NEW_LINE;
 
+/**
+ * A class to handle Search by date command
+ *
+ * @author Khenus Tan
+ */
 public class PrintCommand extends Command {
-    String sortBy;
-    LocalDate dateToSearch;
+    private String sortBy;
+    private LocalDate dateToSearch;
 
+    /**
+     * Constructor for search by date command
+     *
+     * @param command The full input of user
+     *
+     * @throws DukeException If the search date is missing or if the date is in the wrong format
+     */
     public PrintCommand(String command) throws DukeException {
         String[] information = command.split(" ");
         this.sortBy = information[1];
@@ -40,6 +52,13 @@ public class PrintCommand extends Command {
         }
     }
 
+    /**
+     * Execute for searching for deadline or event that is due on a specific date
+     *
+     * @param allActions The TaskList containing all added tasks
+     * @param ui The Ui for interfacing with the user
+     * @param storage The Storage for file IO
+     */
     public void execute(TaskList allActions, Ui ui, Storage storage) {
         if (sortBy.equals("deadline") || sortBy.equals("event")) {
             ArrayList<Task> fullArray = allActions.getFullArray();
@@ -82,6 +101,12 @@ public class PrintCommand extends Command {
         }
     }
 
+    /**
+     * Helper function to print the full list of array that contains the search result
+     *
+     * @param arrayToPrint The ArrayList containing all search result
+     * @param ui The Ui for interfacing with the user
+     */
     private void printFullList(ArrayList<Task> arrayToPrint, Ui ui) {
         if (sortBy.equals("todo")) {
             if (arrayToPrint.size() == 0) {

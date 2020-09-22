@@ -20,13 +20,32 @@ import static duke.Constants.OUT_OF_BOUND_DELETION;
 import static duke.Constants.CONFIRMATION_FOOTER_FIRST_PART;
 import static duke.Constants.CONFIRMATION_FOOTER_SECOND_PART;
 
+/**
+ * A class to handle all deletion command
+ *
+ * @author Khenus Tan
+ */
 public class DeleteCommand extends Command {
-    String userInput;
+    private String userInput;
 
+    /**
+     * Constructor for deletion command
+     *
+     * @param userInput The string of full user input i.e event [description] /at [date] [time]
+     */
     public DeleteCommand(String userInput) {
         this.userInput = userInput;
     }
 
+    /**
+     * Execute command for deleting a specific entry from TaskList. Captures exception for invalid item
+     * number for deletion, input that is not a number and number that is larger than the TaskList provided
+     *
+     * @param task The TaskList containing all added tasks
+     * @param ui The Ui for interfacing with the user
+     * @param storage The Storage for file IO
+     */
+    @Override
     public void execute(TaskList task, Ui ui, Storage storage) {
         try {
             deletionHandler(userInput, task, ui);
@@ -39,7 +58,18 @@ public class DeleteCommand extends Command {
         }
     }
 
-    public static void deletionHandler(String userInput, TaskList allActions, Ui ui)
+    /**
+     * Helper function to execute the deletion of task from TaskList if input is valid
+     *
+     * @param userInput
+     * @param allActions
+     * @param ui
+     *
+     * @throws DukeItemNumberException If user did not input a number to be deleted
+     * @throws DukeDescriptionNumberException If user input an index that is not a number
+     * @throws DukeDescriptionOutOfBoundException If user input an index that is larger than the size of TaskList
+     */
+    private void deletionHandler(String userInput, TaskList allActions, Ui ui)
             throws DukeItemNumberException, DukeDescriptionNumberException, DukeDescriptionOutOfBoundException {
         String[] userInputs= userInput.split(" ");
 

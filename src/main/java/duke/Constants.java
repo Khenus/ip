@@ -1,5 +1,10 @@
 package duke;
 
+/**
+ * A class containing all constants in Duke
+ *
+ * @author Khenus Tan
+ */
 public class Constants {
     public static final String FRONT_SPACING = " ";
     public static final String NEW_LINE = "\n";
