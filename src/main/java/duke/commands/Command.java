@@ -1,5 +1,7 @@
-package duke.helper;
+package duke.commands;
 
+import duke.helper.Storage;
+import duke.helper.Ui;
 import duke.task.TaskList;
 
 public class Command {

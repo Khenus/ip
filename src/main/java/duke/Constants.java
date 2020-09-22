@@ -19,6 +19,7 @@ public class Constants {
     public static final String GREETING_HEADER_TOP = FRONT_SPACING + "Hello! I'm duke.Duke\n";
     public static final String GREETING_HEADER_BOTTOM = FRONT_SPACING + "What can I do for you?";
     public static final String BYE_HEADER = FRONT_SPACING + "Bye Bye! Hope to see you again soon!";
+    public static final String DATE_FORMAT_ERROR = FRONT_SPACING + "☹ OOPS!!! The format of the date must be yyyy-mm-dd!";
 
     //For File Handler
     public static final String INITIALIZER = FRONT_SPACING + "Initializing...\n";

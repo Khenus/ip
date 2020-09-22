@@ -35,6 +35,10 @@ public class Event extends Task {
         }
     }
 
+    public LocalDate getDateAt() {
+        return dateAt;
+    }
+
     @Override
     public String getFullTask() {
         String dateTimeInString = dateAt.format(DateTimeFormatter.ofPattern("MMM d yyyy"));

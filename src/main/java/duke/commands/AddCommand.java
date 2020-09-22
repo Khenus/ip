@@ -1,7 +1,6 @@
 package duke.commands;
 
 import duke.exceptions.*;
-import duke.helper.Command;
 import duke.task.TaskList;
 import duke.helper.Ui;
 import duke.helper.Storage;
@@ -14,6 +13,7 @@ import static duke.Constants.INVALID_TASK;
 import static duke.Constants.TASK_HEADER;
 import static duke.Constants.FRONT_SPACING;
 import static duke.Constants.NEW_LINE;
+import static duke.Constants.DATE_FORMAT_ERROR;
 import static duke.Constants.CONFIRMATION_FOOTER_FIRST_PART;
 import static duke.Constants.CONFIRMATION_FOOTER_SECOND_PART;
 
@@ -86,7 +86,7 @@ public class AddCommand extends Command {
                 allActions.add(newTask);
                 taskAddedVerification(ui, newTask, allActions);
             } catch (DukeTimeFormatException timeFormatError) {
-                ui.printWithLines("☹ OOPS!!! The format of the date must be yyyy-mm-dd!");
+                ui.printWithLines(DATE_FORMAT_ERROR);
             }
         } else if (command.equals("event")) {
             String[] details = description.split(" /at ");
@@ -104,7 +104,7 @@ public class AddCommand extends Command {
                 allActions.add(newTask);
                 taskAddedVerification(ui, newTask, allActions);
             } catch (DukeTimeFormatException timeFormatError) {
-                ui.printWithLines("☹ OOPS!!! The format of the date must be yyyy-mm-dd!");
+                ui.printWithLines(DATE_FORMAT_ERROR);
             }
         }
     }

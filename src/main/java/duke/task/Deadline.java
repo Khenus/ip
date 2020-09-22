@@ -35,6 +35,10 @@ public class Deadline extends Task {
         }
     }
 
+    public LocalDate getDateBy() {
+        return dateBy;
+    }
+
     @Override
     public String getFullTask() {
         String dateTimeInString = dateBy.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
