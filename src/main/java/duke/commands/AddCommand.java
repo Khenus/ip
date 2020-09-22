@@ -1,11 +1,6 @@
 package duke.commands;
 
-import duke.exceptions.DukeInvalidCommandException;
-import duke.exceptions.DukeDescriptionException;
-import duke.exceptions.DukeDateByException;
-import duke.exceptions.DukeDateAtException;
-import duke.exceptions.DukeTimeFormatException;
-
+import duke.exceptions.*;
 import duke.task.TaskList;
 import duke.helper.Ui;
 import duke.helper.Storage;
@@ -22,18 +17,37 @@ import static duke.Constants.DATE_FORMAT_ERROR;
 import static duke.Constants.CONFIRMATION_FOOTER_FIRST_PART;
 import static duke.Constants.CONFIRMATION_FOOTER_SECOND_PART;
 
-public class AddCommand extends Command {
-    String userInput;
-    String command;
 
+/**
+ * Class to handle creation and addition of a new Todo, Event or DeadLine task to TaskList.
+ * Inherits from {@link Command}
+ *
+ * @author Khenus Tan
+ * */
+public class AddCommand extends Command {
+    private String userInput;
+    private String command;
+
+    /**
+     * Constructor for AddCommand class
+     *
+     * @param command The command string
+     * @param userInput The string of full user input i.e event [description] /at [date] [time]
+     * */
     public AddCommand(String command, String userInput) {
         this.userInput = userInput;
         this.command = command;
     }
 
     /**
-     * Storing new action into Array ListCommand
+     * Execute command for adding a new Task into list. This also captures exception if the command is
+     * invalid, missing description, missing date for deadline and events
+     *
+     * @param allActions The TaskList containing all added tasks
+     * @param ui The Ui for interfacing with the user
+     * @param storage The Storage for file IO
      */
+    @Override
     public void execute(TaskList allActions, Ui ui, Storage storage) {
         try {
             newTaskCreator(ui, command, userInput, allActions);
@@ -49,9 +63,19 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Creating new task
+     * Helper function to create a new Task object, before storing it into TaskList if there is no error
+     *
+     * @param ui The Ui for interfacing with the user
+     * @param command The command string input by the user
+     * @param userInput The String containing full user input i.e todo description
+     * @param allActions The TaskList containing all added tasks
+     *
+     * @throws DukeDescriptionException If the description is empty
+     * @throws DukeDateAtException If the date at for an event is empty
+     * @throws DukeDateByException If the date by for a deadline is empty
+     * @throws DukeInvalidCommandException If the command being entered is invalid
      */
-    public static void newTaskCreator(Ui ui, String command, String userInput, TaskList allActions)
+    private void newTaskCreator(Ui ui, String command, String userInput, TaskList allActions)
             throws DukeDescriptionException, DukeDateAtException, DukeDateByException, DukeInvalidCommandException {
         int firstSpaceIndex = userInput.indexOf(" ");
         String description = userInput.substring(firstSpaceIndex + 1);
@@ -115,9 +139,13 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Getting confirmation for task creation
+     * Helper function to get verification if a new Task is successfully created
+     *
+     * @param ui The Ui for interfacing with the user
+     * @param allActions The TaskList containing all added tasks
+     * @param newTask The new Task that is added
      * */
-    public static void taskAddedVerification(Ui ui, Task newTask, TaskList allActions) {
+    private void taskAddedVerification(Ui ui, Task newTask, TaskList allActions) {
         String taskConfirmation = newTask.getFullTask();
 
         if (taskConfirmation.equals("")) {

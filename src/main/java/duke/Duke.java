@@ -7,11 +7,21 @@ import duke.helper.Storage;
 import duke.helper.Ui;
 import duke.task.TaskList;
 
+/**
+ * Main class for Duke
+ *
+ * @author Khenus Tan
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Duke to allow for initialising of save files
+     *
+     * @param filePath A String containing the path of the save file
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -23,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * A continuously running function to allow for user input and task operations
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -35,12 +48,16 @@ public class Duke {
                 storage.write(tasks);
             } catch (DukeException e) {
                 ui.showError(e.getErrorMessage());
-            } finally {
             }
         }
         ui.showGoodbye();
     }
 
+    /**
+     * Main function of project Duke
+     *
+     * @param args A String Array containing arguements when running Duke
+     */
     public static void main(String[] args) {
         new Duke("tasks.txt").run();
     }

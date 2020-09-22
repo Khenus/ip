@@ -2,14 +2,26 @@ package duke.helper;
 
 import duke.commands.AddCommand;
 import duke.commands.Command;
-import duke.commands.DeleteCommand;
-import duke.commands.DoneCommand;
-import duke.commands.FindCommand;
 import duke.commands.ListCommand;
+import duke.commands.DoneCommand;
+import duke.commands.DeleteCommand;
 import duke.commands.PrintCommand;
+
 import duke.exceptions.DukeException;
 
+/**
+ * Class to handle all command input by user.
+ *
+ * @author Khenus Tan
+ */
 public class Parser {
+    /**
+     * Command to parse inputs of user. Inputs include list, done, delete, bye, deadline, event, todo and print.
+     *
+     * @param command The String containing full user input
+     * @return Command
+     * @throws DukeException If the commands is invalid or when the needed description is missing
+     */
     public static Command parse(String command) throws DukeException {
         String[] inputs = command.split(" ");
 
@@ -28,12 +40,6 @@ public class Parser {
                 return new PrintCommand(command);
             } catch (DukeException error) {
                 throw new DukeException(error.getErrorMessage());
-            }
-        } else if (inputs[0].equals("find")) {
-            try {
-                return new FindCommand(inputs[1]);
-            } catch (IndexOutOfBoundsException error) {
-                throw new DukeException("The keyword cannot be empty!");
             }
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
