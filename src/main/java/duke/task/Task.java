@@ -17,6 +17,10 @@ public class Task {
         this.isDone = parseBoolean(isDone);
     }
 
+    public String getTaskDescription() {
+        return this.taskDescription;
+    }
+
     public void setIsDone(boolean newIsDone) {
         this.isDone = newIsDone;
     }
