@@ -2,11 +2,11 @@ package duke.helper;
 
 import duke.commands.AddCommand;
 import duke.commands.Command;
-import duke.commands.ListCommand;
-import duke.commands.DoneCommand;
 import duke.commands.DeleteCommand;
+import duke.commands.DoneCommand;
+import duke.commands.FindCommand;
+import duke.commands.ListCommand;
 import duke.commands.PrintCommand;
-
 import duke.exceptions.DukeException;
 
 public class Parser {
@@ -28,6 +28,12 @@ public class Parser {
                 return new PrintCommand(command);
             } catch (DukeException error) {
                 throw new DukeException(error.getErrorMessage());
+            }
+        } else if (inputs[0].equals("find")) {
+            try {
+                return new FindCommand(inputs[1]);
+            } catch (IndexOutOfBoundsException error) {
+                throw new DukeException("The keyword cannot be empty!");
             }
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
