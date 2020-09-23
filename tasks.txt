@@ -1,5 +1,5 @@
-E | false | newevent | 2020-12-30 | 1800
-E | true | newevent | 2020-12-30
-D | false | deadline1 | 2020-10-23 | 2350
-D | false | deadline 2 | 2020-01-26 | 1010
-D | true | deadline 2 | 2020-02-20
+T | false | grocery shopping
+D | false | complete prototype | 2020-10-10
+D | false | submit ip | 2020-10-02 | 2359
+E | false | meet friends | 2020-09-25
+E | false | supper | 2020-09-26 | 2200
