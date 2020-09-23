@@ -16,8 +16,8 @@ Below shows a summary of the features supported by the latest version of Duke.
 |        [Done](#done)        |             Duke marks the selected task as done             |                 `done <index of task>`                 |
 |        [Find](#find)        |        Duke searches the list of entry for a keyword         |                    `find <keyword>`                    |
 |      [Delete](#delete)      |                Duke deletes a specific entry                 |                    `delete <index>`                    |
-|    [Save](#save-&-load)     |     Duke automatically saves all entry after each update     |                  *No command needed*                   |
-|    [Load](#save-&-load)     | Duke automatically searches for a previous save file and loads it if available |                  *No command needed*                   |
+|    [Save](#save--load)     |     Duke automatically saves all entry after each update     |                  *No command needed*                   |
+|    [Load](#save--load)     | Duke automatically searches for a previous save file and loads it if available |                  *No command needed*                   |
 
 
 
@@ -33,7 +33,7 @@ This functionality allows duke to keep track of the task that needs to be done. 
 
 Command syntax:  
 
-```bash
+```
 todo <description>
 ```
 
@@ -41,7 +41,7 @@ todo <description>
 
 Command example: 
 
-```bash
+```
 todo Grocery Shopping
 ```
 
@@ -51,7 +51,7 @@ todo Grocery Shopping
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  Got it. I've added this task: 
   [T][✗] Grocery Shopping
@@ -75,7 +75,7 @@ This functionality allows duke to keep track of upcoming deadlines. This functio
 
 Command syntax:  
 
-```bash
+```
 deadline <description> /by <date in yyyy-mm-dd>, <time (optional)>
 ```
 
@@ -89,7 +89,7 @@ deadline <description> /by <date in yyyy-mm-dd>, <time (optional)>
 
 Command example (Without time): 
 
-```bash
+```
 deadline Complete Prototype /by 2020-10-10
 ```
 
@@ -99,7 +99,7 @@ deadline Complete Prototype /by 2020-10-10
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  Got it. I've added this task: 
   [D][✗] Complete Prototype (by: Oct 10 2020)
@@ -111,7 +111,7 @@ ____________________________________________________________
 
 Command example (With time): 
 
-```bash
+```
 deadline Submit Ip /by 2020-10-02, 2359
 ```
 
@@ -121,7 +121,7 @@ deadline Submit Ip /by 2020-10-02, 2359
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  Got it. I've added this task: 
   [D][✗] Submit Ip (by: Oct 2 2020, 2359 hrs)
@@ -145,7 +145,7 @@ This functionality allows duke to keep track of upcoming Events. This functional
 
 Command syntax:  
 
-```bash
+```
 event <description> /at <date in yyyy-mm-dd>, <time (optional)>
 ```
 
@@ -159,7 +159,7 @@ event <description> /at <date in yyyy-mm-dd>, <time (optional)>
 
 Command example (Without time): 
 
-```bash
+```
 event Meet friends /at 2020-09-25
 ```
 
@@ -169,7 +169,7 @@ event Meet friends /at 2020-09-25
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  Got it. I've added this task: 
   [E][✗] Meet friends (at: Sep 25 2020)
@@ -181,7 +181,7 @@ ____________________________________________________________
 
 Command example (With time): 
 
-```bash
+```
 event Supper /at 2020-09-26, 2200
 ```
 
@@ -191,7 +191,7 @@ event Supper /at 2020-09-26, 2200
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  Got it. I've added this task: 
   [E][✗] Supper (at: Sep 26 2020, 2200 hrs)
@@ -215,7 +215,7 @@ This functionality lists every task being added into Duke.
 
 Command syntax:  
 
-```bash
+```
 list
 ```
 
@@ -223,7 +223,7 @@ list
 
 Command example: 
 
-```bash
+```
 list
 ```
 
@@ -233,7 +233,7 @@ list
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  Here are the tasks in your list:
  1.[T][✗] Grocery Shopping
@@ -260,7 +260,7 @@ This functionality allows Duke to search for the deadlines or event on a particu
 
 Command syntax:  
 
-```bash
+```
 print [deadline/event] <date in yyyy-mm-dd>
 ```
 
@@ -272,7 +272,7 @@ print [deadline/event] <date in yyyy-mm-dd>
 
 Command example: 
 
-```bash
+```
 print event 2020-09-25
 ```
 
@@ -282,7 +282,7 @@ print event 2020-09-25
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  The events on Sep 25 2020 are:
  • [E][✗] Meet friends (at: Sep 25 2020)
@@ -304,7 +304,7 @@ This functionality allows duke to mark a specific task as done
 
 Command syntax:  
 
-```bash
+```
 done <index>
 ```
 
@@ -312,7 +312,7 @@ done <index>
 
 Command example: 
 
-```bash
+```
 done 5
 ```
 
@@ -322,7 +322,7 @@ done 5
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
 Nice! I've marked this task as done:
  [E][✓] Supper (at: Sep 26 2020, 2200 hrs)
@@ -345,7 +345,7 @@ This functionality allows duke to search through current list of Tasks for the k
 
 Command syntax:  
 
-```bash
+```
 find <keyword>
 ```
 
@@ -353,7 +353,7 @@ find <keyword>
 
 Command example: 
 
-```bash
+```
 find Supper
 ```
 
@@ -363,7 +363,7 @@ find Supper
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  Here are the matching tasks in your list:
  1.[E][✗] Supper (at: Sep 26 2020, 2200 hrs)
@@ -384,7 +384,7 @@ This functionality allows duke to delete specific entry from existing list
 
 Command syntax:  
 
-```bash
+```
 delete <index of task>
 ```
 
@@ -392,7 +392,7 @@ delete <index of task>
 
 Command example: 
 
-```bash
+```
 delete 1
 ```
 
@@ -402,7 +402,7 @@ delete 1
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  Noted. I've removed this task: 
   [T][✗] Grocery Shopping
@@ -422,7 +422,7 @@ This functionality allows duke to automatically load data from an existing save 
 
 Command syntax:  
 
-```bash
+```
 No command needed
 ```
 
@@ -430,7 +430,7 @@ No command needed
 
 Expected outcome for loading file:
 
-```bash
+```
 ____________________________________________________________
  Initializing...
  File successfully read!
@@ -442,7 +442,7 @@ ____________________________________________________________
 
 Expected outcome for no save file found:
 
-```bash
+```
 ____________________________________________________________
  Save file not found.
 ____________________________________________________________
