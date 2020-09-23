@@ -43,6 +43,15 @@ public class Task {
     }
 
     /**
+     * A getter to get the description of current task
+     *
+     * @return String
+     */
+    public String getTaskDescription() {
+        return this.taskDescription;
+    }
+
+    /**
      * A function to return current Task as a String to be shown to user
      *
      * @return String

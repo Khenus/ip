@@ -1,5 +1,0 @@
-T | false | grocery shopping
-D | false | complete prototype | 2020-10-10
-D | false | submit ip | 2020-10-02 | 2359
-E | false | meet friends | 2020-09-25
-E | false | supper | 2020-09-26 | 2200

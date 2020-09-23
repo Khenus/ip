@@ -54,7 +54,7 @@ public class Ui {
      * @return String
      */
     public String readCommand() {
-        return scanner.nextLine().toLowerCase();
+        return scanner.nextLine();
     }
 
     /**

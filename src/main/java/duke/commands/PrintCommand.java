@@ -36,7 +36,7 @@ public class PrintCommand extends Command {
      */
     public PrintCommand(String command) throws DukeException {
         String[] information = command.split(" ");
-        this.sortBy = information[1];
+        this.sortBy = information[1].toLowerCase();
 
         if (sortBy.equals("todo")) {
             dateToSearch = null;
