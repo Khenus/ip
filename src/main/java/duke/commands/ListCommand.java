@@ -31,6 +31,7 @@ public class ListCommand extends Command {
                 fullList += NEW_LINE;
             }
         }
+
         ui.printWithLines(fullList);
     }
 }

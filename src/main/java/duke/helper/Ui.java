@@ -2,6 +2,8 @@ package duke.helper;
 
 import java.util.Scanner;
 
+import static duke.Constants.AVAILABLE_COMMANDS;
+import static duke.Constants.NEW_LINE;
 import static duke.Constants.TOP_LINE;
 import static duke.Constants.INITIALIZER;
 import static duke.Constants.SAVING_INFO;
@@ -38,7 +40,8 @@ public class Ui {
      * A function to show the welcome message
      */
     public void showWelcome() {
-        printWithLines(GREETING_HEADER_TOP + GREETING_HEADER_BOTTOM);
+        printWithLines(GREETING_HEADER_TOP + GREETING_HEADER_BOTTOM +
+                NEW_LINE + AVAILABLE_COMMANDS);
     }
 
     /**

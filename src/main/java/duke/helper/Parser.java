@@ -2,6 +2,7 @@ package duke.helper;
 
 import duke.commands.AddCommand;
 import duke.commands.Command;
+import duke.commands.HelpCommand;
 import duke.commands.ListCommand;
 import duke.commands.DoneCommand;
 import duke.commands.DeleteCommand;
@@ -29,6 +30,8 @@ public class Parser {
 
         if (inputs[0].equals("list")) {
             return new ListCommand();
+        } else if (inputs[0].equals("help")) {
+            return new HelpCommand();
         } else if (inputs[0].equals("done")) {
             return new DoneCommand(Integer.parseInt(inputs[1]));
         } else if (inputs[0].equals("delete")) {

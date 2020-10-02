@@ -8,7 +8,6 @@ package duke;
 public class Constants {
     public static final String FRONT_SPACING = " ";
     public static final String NEW_LINE = "\n";
-    public static final String LINE = "____________________________________________________________";
     public static final String TOP_LINE = "____________________________________________________________\n";
     public static final String BOTTOM_LINE = "\n____________________________________________________________";
     public static final String LIST_HEADER = FRONT_SPACING + "Here are the tasks in your list:\n";
@@ -21,8 +20,18 @@ public class Constants {
     public static final String CONFIRMATION_FOOTER_SECOND_PART = " tasks in the list.";
     public static final String INVALID_TASK_NUMBER = "Invalid task number";
     public static final String MARKED_DONE_HEADER = "Nice! I've marked this task as done:\n";
-    public static final String GREETING_HEADER_TOP = FRONT_SPACING + "Hello! I'm duke.Duke\n";
-    public static final String GREETING_HEADER_BOTTOM = FRONT_SPACING + "What can I do for you?";
+    public static final String GREETING_HEADER_TOP = FRONT_SPACING + "Hello! I'm Duke~\n";
+    public static final String GREETING_HEADER_BOTTOM = FRONT_SPACING + "What can I do for you?" + NEW_LINE;
+    public static final String AVAILABLE_COMMANDS = FRONT_SPACING + "The available commands are:" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - todo <description>" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - deadline <description> /by <date in yyyy-mm-dd>, <time (optional)>" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - event <description> /at <date in yyyy-mm-dd>, <time (optional)>" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - list" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - help" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - print [deadline/event] <date in yyyy-mm-dd>" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - done <index>" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - find <keyword>" + NEW_LINE +
+            FRONT_SPACING + FRONT_SPACING + " - delete <index of task>";
     public static final String BYE_HEADER = FRONT_SPACING + "Bye Bye! Hope to see you again soon!";
     public static final String DATE_FORMAT_ERROR = FRONT_SPACING + "☹ OOPS!!! The format of the date must be yyyy-mm-dd!";
 
