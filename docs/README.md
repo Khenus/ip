@@ -260,7 +260,7 @@ This functionality lists every functions available in Duke.
 
 Command syntax:  
 
-```bash
+```
 help
 ```
 
@@ -268,7 +268,7 @@ help
 
 Command example: 
 
-```bash
+```
 help
 ```
 
@@ -278,7 +278,7 @@ help
 
 Expected outcome:
 
-```bash
+```
 ____________________________________________________________
  The available commands are:
    - todo <description>
