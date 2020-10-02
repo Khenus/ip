@@ -12,6 +12,7 @@ Below shows a summary of the features supported by the latest version of Duke.
 | [Track Deadline](#deadline) | Duke tracks upcoming deadlines, with the ability to search though by date | `deadline <description> /by <date>, <time (optional)>` |
 |   [Track Events](#event)    | Duke tracks upcoming events, with the ability to search though by date |  `event <description> /at <date>, <time (optional)>`   |
 |        [List](#list)        |                 Duke lists all added entries                 |                         `list`                         |
+|        [Help](#help)        |              Duke lists all available functions              |                         `help`                         |
 |       [Print](#print)       |     Duke prints all deadline/events on a particular date     |            `print [deadline/event] <date>`             |
 |        [Done](#done)        |             Duke marks the selected task as done             |                 `done <index of task>`                 |
 |        [Find](#find)        |        Duke searches the list of entry for a keyword         |                    `find <keyword>`                    |
