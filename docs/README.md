@@ -250,6 +250,55 @@ ____________________________________________________________
 
 ---
 
+### Help
+
+---
+
+This functionality lists every functions available in Duke.
+
+
+
+Command syntax:  
+
+```bash
+help
+```
+
+
+
+Command example: 
+
+```bash
+help
+```
+
+*Note that the keyword `help` is case-insensitive*
+
+
+
+Expected outcome:
+
+```bash
+____________________________________________________________
+ The available commands are:
+   - todo <description>
+   - deadline <description> /by <date in yyyy-mm-dd>, <time (optional)>
+   - event <description> /at <date in yyyy-mm-dd>, <time (optional)>
+   - list
+   - help
+   - print [deadline/event] <date in yyyy-mm-dd>
+   - done <index>
+   - find <keyword>
+   - delete <index of task>
+____________________________________________________________
+```
+
+
+
+
+
+---
+
 ### Print
 
 ---

@@ -56,7 +56,7 @@ public class Duke {
     /**
      * Main function of project Duke
      *
-     * @param args A String Array containing arguements when running Duke
+     * @param args A String Array containing arguments when running Duke
      */
     public static void main(String[] args) {
         new Duke("tasks.txt").run();
